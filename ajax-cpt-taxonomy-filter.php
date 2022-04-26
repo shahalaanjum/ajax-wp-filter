@@ -51,8 +51,8 @@ function acpt_ajax_shortcode($atts){
 										All
 									</a>
 									<?php foreach($categories as $category) : ?>
-										<a href="javascript:;" class="filter-link cat-list_item" data-slug="<?= $category->slug; ?>" data-type="<?php echo esc_html( $onetax ); ?>" data-id="<?= $category->term_id; ?>">
-											<?= $category->name; ?>
+										<a href="javascript:;" class="filter-link cat-list_item" data-slug="<?php echo esc_html($category->slug); ?>" data-type="<?php echo esc_html( $onetax ); ?>" data-id="<?php echo esc_html($category->term_id); ?>">
+											<?php echo esc_html($category->name); ?>
 										</a>
 									<?php endforeach; ?>
 								</div>
@@ -104,13 +104,13 @@ function acpt_ajax_shortcode($atts){
 add_shortcode( 'ajax_posts_filter', 'acpt_ajax_shortcode' );
  //The PHP WordPress Filter,
 function acpt_filter_blogs() {
-	$catIds = isset($_POST['catIds']) ? sanitize_text_field(esc_html($_POST['catIds'])) : '' ;
-	$postype = isset($_POST['postype']) ? sanitize_text_field(esc_html($_POST['postype'])) : '' ;
-	$taxType = isset($_POST['taxType']) ? sanitize_text_field(esc_html($_POST['taxType'])) : '' ;
+	$catIds = isset($_POST['catIds']) ? esc_html(sanitize_text_field($_POST['catIds'])) : '' ;
+	$postype = isset($_POST['postype']) ? esc_html(sanitize_text_field($_POST['postype'])) : '' ;
+	$taxType = isset($_POST['taxType']) ? esc_html(sanitize_text_field($_POST['taxType'])) : '' ;
 	
 	
 	//$tagIds = $_POST['tagIds'];
-	$page = (isset($_POST['pageNumber'])) ? esc_html($_POST['pageNumber']) : 0;
+	$page = (isset($_POST['pageNumber'])) ? esc_html(sanitize_text_field($_POST['pageNumber'])) : 0;
 	$args = [
 		'post_type' => ($postype) ? $postype : 'post',
 		'posts_per_page' => 6,
