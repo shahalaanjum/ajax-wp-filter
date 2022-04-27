@@ -104,8 +104,10 @@ function acpt_ajax_shortcode($atts){
 add_shortcode( 'ajax_posts_filter', 'acpt_ajax_shortcode' );
  //The PHP WordPress Filter,
 function acpt_filter_blogs() {
-	$catIdsu = sanitize_text_field($_POST['catIds']);
-	$catIds = isset($catIdsu) ? esc_html($catIdsu) : '' ;
+	$catIds = intval($_POST['catIds']);
+	if ( ! $catIds ) {
+		$catIds = '';
+	}
 	$postypeu = sanitize_text_field($_POST['postype']);
 	$postype = isset($postypeu) ? esc_html($postypeu) : '' ;
 	$taxTypeu = sanitize_text_field($_POST['taxType']);
@@ -113,8 +115,10 @@ function acpt_filter_blogs() {
 	
 	
 	//$tagIds = $_POST['tagIds'];
-	$pageu = sanitize_text_field($_POST['pageNumber']);
-	$page = isset($pageu) ? esc_html($pageu) : 0 ;
+	$page = intval($_POST['pageNumber']);
+	if ( ! $page ) {
+		$page = 0;
+	}
 
 	$args = [
 		'post_type' => ($postype) ? $postype : 'post',
@@ -171,4 +175,3 @@ function acpt_filter_blogs() {
 }
 add_action('wp_ajax_filter_blogs', 'acpt_filter_blogs');
 add_action('wp_ajax_nopriv_filter_blogs', 'acpt_filter_blogs');
- 
