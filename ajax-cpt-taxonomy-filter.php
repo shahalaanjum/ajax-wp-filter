@@ -104,13 +104,18 @@ function acpt_ajax_shortcode($atts){
 add_shortcode( 'ajax_posts_filter', 'acpt_ajax_shortcode' );
  //The PHP WordPress Filter,
 function acpt_filter_blogs() {
-	$catIds = isset($_POST['catIds']) ? esc_html(sanitize_text_field($_POST['catIds'])) : '' ;
-	$postype = isset($_POST['postype']) ? esc_html(sanitize_text_field($_POST['postype'])) : '' ;
-	$taxType = isset($_POST['taxType']) ? esc_html(sanitize_text_field($_POST['taxType'])) : '' ;
+	$catIdsu = sanitize_text_field($_POST['catIds']);
+	$catIds = isset($catIdsu) ? esc_html($catIdsu) : '' ;
+	$postypeu = sanitize_text_field($_POST['postype']);
+	$postype = isset($postypeu) ? esc_html($postypeu) : '' ;
+	$taxTypeu = sanitize_text_field($_POST['taxType']);
+	$taxType = isset($taxTypeu) ? esc_html($taxTypeu) : '' ;
 	
 	
 	//$tagIds = $_POST['tagIds'];
-	$page = (isset($_POST['pageNumber'])) ? esc_html(sanitize_text_field($_POST['pageNumber'])) : 0;
+	$pageu = sanitize_text_field($_POST['pageNumber']);
+	$page = isset($pageu) ? esc_html($pageu) : 0 ;
+
 	$args = [
 		'post_type' => ($postype) ? $postype : 'post',
 		'posts_per_page' => 6,
@@ -123,7 +128,7 @@ function acpt_filter_blogs() {
 	if (!empty($catIds)) {
 		$args['tax_query'][] = [
 			'taxonomy'      => $taxType,
-			'field'			=> 'term_id',
+			'field'		=> 'term_id',
 			'terms'         => $catIds,
 			'operator'      => 'IN'
 		];
