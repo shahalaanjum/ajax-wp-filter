@@ -4,7 +4,7 @@ const taxname = $('.taxonomy-list input').map(function() {return this.id;}).get(
 
 
 $(document).ready(function(){
-    $.ajax({ url: "http://netstrata.local/plugin-filter/",
+    $.ajax({ url: "/",
         context: document.body,
         data: {
             action: 'loadall',
