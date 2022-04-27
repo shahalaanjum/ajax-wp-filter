@@ -21,12 +21,13 @@ function acpt_ajax_filter_enqueues() {
     wp_localize_script( 'ajax-search', 'myAjax', array( 'ajaxurl' => admin_url( 'admin-ajax.php' ) ) );
 }
 add_action( 'wp_enqueue_scripts', 'acpt_ajax_filter_enqueues' );
-$atts = shortcode_atts(
+
+function acpt_ajax_shortcode($atts){
+	$atts = shortcode_atts(
 	array(
 		'postype' => 'post',
 		'taxtype' => 'category',
 	), $atts, 'ajax_posts_filter' );
-function acpt_ajax_shortcode($atts){
 		 ?>
 <section class="section site-portfolio">
     <div class="container tax-data">
