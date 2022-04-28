@@ -3,7 +3,7 @@ Contributors: shahala
 Tags: wordpres, ajax, filter, cpt, taxonomy, portfolio
 Donate link: https://www.paypal.com/paypalme/shahalaanjum
 Requires at least: 5.7
-Tested up to: 5.8.2
+Tested up to: 5.9.3
 Requires PHP: 7.4
 Stable tag: 1.0.0
 License: GPLv2 or later
